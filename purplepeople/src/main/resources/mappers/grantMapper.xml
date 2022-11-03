@@ -1,0 +1,41 @@
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.purplepeople.mapper.GrantMapper">
+
+    <resultMap type="com.example.purplepeople.domain.Grant" id="result">
+        <result property="idx" column="idx" />
+        <result property="grant" column="grant" />
+        <result property="reason" column="reason" />
+    </resultMap>
+
+    <sql id="sql_select">
+        SELECT
+               a.idx
+             , a.grant
+             , a.reason
+    </sql>
+
+    <insert id="register" parameterType="com.example.purplepeople.domain.Grant"
+            keyProperty="idx">
+
+        INSERT INTO grant
+        (
+              idx
+            , grant
+            , reason
+        )
+        VALUES
+            (
+              #{idx}
+            , #{grant}
+            , #{reason}
+            )
+    </insert>
+    <delete id="delete">
+        DELETE FROM grant
+        where idx = #{idx}
+    </delete>
+
+</mapper>

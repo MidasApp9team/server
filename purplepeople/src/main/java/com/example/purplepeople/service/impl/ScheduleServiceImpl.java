@@ -20,8 +20,12 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public Schedule getByDate(LocalDate date) {
-        return scheduleMapper.getByDate(date);
+    public Long delete(Long idx) {
+        return scheduleMapper.delete(idx);
     }
 
+    @Override
+    public Schedule getByDate(Schedule schedule) {
+        return scheduleMapper.getByDate(schedule);
+    }
 }

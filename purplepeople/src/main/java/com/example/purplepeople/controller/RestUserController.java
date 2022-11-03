@@ -3,6 +3,7 @@ package com.example.purplepeople.controller;
 import com.example.purplepeople.domain.User;
 import com.example.purplepeople.mapper.UserMapper;
 import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +14,20 @@ import purple.common.controller.RestControllerStrategy;
 
 @RestController
 @RequestMapping("/api/user")
+@AllArgsConstructor
 public class RestUserController extends CommonRestControllerPrototype {
     @Autowired
     private UserMapper userMapper;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @PostMapping("/getmainAc")
+    @ApiOperation("사용자 이름/재택근무 여부")
+    public int getmainAc(@RequestBody User user) {
+
+        return user;
+    }
+    
     @PostMapping("/signup.do")
     @ApiOperation("회원가입")
     public int Signup(@RequestBody User user) {
@@ -35,7 +44,11 @@ public class RestUserController extends CommonRestControllerPrototype {
                 if (f_user == null) {
                     return "checkNum";
                 } else if (passwordEncoder.matches(user.getPassword(), f_user.getPassword())) {
-                    return f_user;
+                    if(f_user.getAccess() == 'N') {
+                        return "notyet";
+                    } else {
+                        return f_user;
+                    }
                 } else {
                     return "checkPw";
                 }

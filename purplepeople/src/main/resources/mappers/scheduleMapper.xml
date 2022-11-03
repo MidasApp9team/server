@@ -26,7 +26,7 @@
     <select id="getByDate" resultMap="result">
         <include refid="sql_select"></include>
         FROM schedule AS a
-        WHERE a.date = #{date}
+        WHERE a.date = #{date} AND a.useridx = #{useridx}
     </select>
 
     <insert id="register" parameterType="com.example.purplepeople.domain.Schedule"
@@ -51,5 +51,9 @@
             , #{stop_time}
         )
     </insert>
+    <delete id="delete">
+        DELETE FROM schedule
+               where idx = #{idx}
+    </delete>
 
 </mapper>

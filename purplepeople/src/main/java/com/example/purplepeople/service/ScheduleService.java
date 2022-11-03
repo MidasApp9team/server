@@ -6,5 +6,6 @@ import java.time.LocalDate;
 
 public interface ScheduleService {
     public int register(Schedule schedule);
-    public Schedule getByDate(LocalDate date);
+    public Long delete(Long idx);
+    public Schedule getByDate(Schedule schedule);
 }
