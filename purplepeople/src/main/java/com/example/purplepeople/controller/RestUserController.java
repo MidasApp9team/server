@@ -61,9 +61,11 @@ public class RestUserController extends CommonRestControllerPrototype {
     }
     @PostMapping("/get")
     @ApiOperation("사용자 모든 정보 요청")
-    public ResponseEntity<?> get(@RequestHeader(value = "Authorization") String token, @RequestBody User user) throws Exception {
-        Claims claims = jwtProvider.parseJwtToken(token);
-        if(claims.getSubject().equals(user.getEmpnum())) {
+    public ResponseEntity<?> get(//@RequestHeader(value = "Authorization") String token,
+                                 @RequestBody User user) throws Exception {
+        //Claims claims = jwtProvider.parseJwtToken(token);
+        //if(claims.getSubject().equals(user.getEmpnum()))
+        {
             User f_user = userMapper.getByEmpnum(user.getEmpnum());
             return controllerContext.execute(new RestControllerStrategy() {
                 @Override
@@ -81,7 +83,7 @@ public class RestUserController extends CommonRestControllerPrototype {
                     }
                 }
             });
-        } else { return null; }
+        } //else { return null; }
     }
     @PostMapping("/access")
     @ApiOperation("회원가입 허가")
