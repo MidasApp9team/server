@@ -1,0 +1,41 @@
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.purplepeople.mapper.CauseMapper">
+
+    <resultMap type="com.example.purplepeople.domain.Cause" id="result">
+        <result property="idx" column="idx" />
+        <result property="title" column="title" />
+        <result property="contents" column="contents" />
+    </resultMap>
+
+    <sql id="sql_select">
+        SELECT
+               a.idx
+             , a.title
+             , a.contents
+    </sql>
+
+    <insert id="register" parameterType="com.example.purplepeople.domain.Cause"
+            keyProperty="idx">
+
+        INSERT INTO cause
+        (
+              idx
+            , title
+            , contents
+        )
+        VALUES
+            (
+              #{idx}
+            , #{title}
+            , #{contents}
+            )
+    </insert>
+    <delete id="delete">
+        DELETE FROM cause
+        where idx = #{idx}
+    </delete>
+
+</mapper>
