@@ -6,27 +6,30 @@
 
     <resultMap type="com.example.purplepeople.domain.User" id="result">
         <result property="idx" column="idx" />
+        <result property="empnum" column="empnum" />
         <result property="name" column="name" />
         <result property="telephone" column="telephone" />
         <result property="password" column="password" />
         <result property="access" column="access" />
-        <result property="empnum" column="empnum" />
+        <result property="grant_emp" column="grant_emp" />
     </resultMap>
 
     <sql id="sql_select">
         SELECT
             a.idx
              , a.name
+             , a.empnum
+             , a.email
              , a.telephone
              , a.password
              , a.access
-             , a.empnum
+             , a.grant_emp
     </sql>
 
-    <select id="get" resultMap="result">
+    <select id="getByEmpnum" resultMap="result">
         <include refid="sql_select"></include>
         FROM user AS a
-        WHERE a.idx = #{idx}
+        WHERE a.empnum = #{empnum}
     </select>
 
     <select id="getByName" resultMap="result">
@@ -40,20 +43,34 @@
 
         INSERT INTO user
         (
-              name
+              idx
+            , empnum
+            , email
+            , name
             , telephone
             , password
-            , access
-            , empnum
         )
         VALUES
         (
-              #{name}
+              #{idx}
+            , #{empnum}
+            , #{email}
+            , #{name}
             , #{telephone}
             , #{password}
-            , #{access}
-            , #{empnum}
         )
     </insert>
+
+    <select id="login" resultMap="result">
+        <include refid="sql_select"></include>
+        FROM user AS a
+        WHERE a.empnum = #{empnum}
+    </select>
+
+    <update id="accessEdit" parameterType="map"
+            keyProperty="idx">
+        UPDATE user set access = #{key}
+        WHERE empnum = #{empnum}
+    </update>
 
 </mapper>

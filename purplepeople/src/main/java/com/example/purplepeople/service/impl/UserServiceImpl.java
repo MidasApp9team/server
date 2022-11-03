@@ -4,6 +4,8 @@ import com.example.purplepeople.domain.User;
 import com.example.purplepeople.mapper.UserMapper;
 import com.example.purplepeople.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
