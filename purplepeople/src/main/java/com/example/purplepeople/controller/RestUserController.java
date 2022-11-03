@@ -60,7 +60,7 @@ public class RestUserController extends CommonRestControllerPrototype {
         });
     }
     @PostMapping("/get")
-    @ApiOperation("사용자 총 정보 요청")
+    @ApiOperation("사용자 모든 정보 요청")
     public ResponseEntity<?> get(@RequestHeader(value = "Authorization") String token, @RequestBody User user) throws Exception {
         Claims claims = jwtProvider.parseJwtToken(token);
         if(claims.getSubject().equals(user.getEmpnum())) {
