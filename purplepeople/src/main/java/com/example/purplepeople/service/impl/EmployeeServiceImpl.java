@@ -1,26 +1,19 @@
 package com.example.purplepeople.service.impl;
 
 import com.example.purplepeople.domain.Cause;
-import com.example.purplepeople.domain.Grant;
-import com.example.purplepeople.mapper.CauseMapper;
-import com.example.purplepeople.mapper.GrantMapper;
-import com.example.purplepeople.service.CauseService;
-import com.example.purplepeople.service.GrantService;
+import com.example.purplepeople.mapper.EmployeeMapper;
+import com.example.purplepeople.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CauseServiceImpl implements CauseService {
+public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
-    private CauseMapper causeMapper;
+    private EmployeeMapper employeeMapper;
 
     @Override
-    public void register(Cause cause) {
-        causeMapper.register(cause);
-    }
-    @Override
-    public void delete(Long idx) {
-        causeMapper.delete(idx);
+    public String getManager(String empnum) {
+        return employeeMapper.getManager(empnum);
     }
 }

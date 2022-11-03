@@ -51,6 +51,6 @@ public interface UserMapper {
      * @param empnum empnum, key key
      * @return idx
      */
-    public int accessEdit(String empnum, char key);
+    public int accessEdit(String empnum, String key);
 
 }

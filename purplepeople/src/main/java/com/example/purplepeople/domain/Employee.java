@@ -10,16 +10,12 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@Table(name = "cause")
-public class Cause {
+@Table(name = "employee")
+public class Employee {
     @Id
     @NotNull
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idx;
+    private String empnum;
     @NonNull
     @Column
-    private String title;
-    @NonNull
-    @Column
-    private String contents;
+    private String manager;
 }

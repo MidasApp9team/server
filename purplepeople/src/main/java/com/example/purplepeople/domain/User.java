@@ -28,9 +28,11 @@ public class User {
     @NotNull
     private String password;
     @Column
-    private char access;
+    @NotNull
+    private String access;
     @Column
-    private char grant_emp;
+    @NotNull
+    private String grant_emp;
 
     public Long getIdx() {
         return idx;
@@ -47,18 +49,21 @@ public class User {
     public String getPassword() {
         return password;
     }
-    public char getAccess() {
+    public String getAccess() {
         return access;
     }
     public String getEmpnum() {
         return empnum;
     }
-    public char getGrant_emp() {
+    public String getGrant_emp() {
         return grant_emp;
     }
 
     public void setEmpnum(String empnum) {
         this.empnum = empnum;
+    }
+    public void setAccess(String access) {
+        this.access = access;
     }
     public void setPassword(String password) {
         this.password = password;

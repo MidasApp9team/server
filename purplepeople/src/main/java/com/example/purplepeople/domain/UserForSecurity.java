@@ -32,10 +32,10 @@ public class UserForSecurity implements UserDetails {
 		Collection<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
 		authorities.add(authority);
 		
-		if (user.getAccess() == 'N') {
+		if (user.getAccess() == "N") {
 			authority = new SimpleGrantedAuthority("ROLE_USER");
 			authorities.add(authority);
-		} else if (user.getAccess() == 'A') {
+		} else if (user.getAccess() == "A") {
 			authority = new SimpleGrantedAuthority("ROLE_ADMIN");
 			authorities.add(authority);
 		}
