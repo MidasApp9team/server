@@ -1,0 +1,55 @@
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.purplepeople.mapper.ScheduleMapper">
+
+    <resultMap type="com.example.purplepeople.domain.Schedule" id="result">
+        <result property="idx" column="idx" />
+        <result property="useridx" column="useridx" />
+        <result property="type" column="type" />
+        <result property="date" column="date" />
+        <result property="start_time" column="start_time" />
+        <result property="stop_time" column="stop_time" />
+    </resultMap>
+
+    <sql id="sql_select">
+        SELECT
+               a.idx
+             , a.useridx
+             , a.type
+             , a.date
+             , a.start_time
+             , a.stop_time
+    </sql>
+
+    <select id="getByDate" resultMap="result">
+        <include refid="sql_select"></include>
+        FROM schedule AS a
+        WHERE a.date = #{date}
+    </select>
+
+    <insert id="register" parameterType="com.example.purplepeople.domain.Schedule"
+            keyProperty="idx">
+
+        INSERT INTO schedule
+        (
+              idx
+            , useridx
+            , type
+            , date
+            , start_time
+            , stop_time
+        )
+        VALUES
+        (
+              #{idx}
+            , #{useridx}
+            , #{type}
+            , #{date}
+            , #{start_time}
+            , #{stop_time}
+        )
+    </insert>
+
+</mapper>

@@ -1,16 +1,23 @@
 package com.example.purplepeople.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
-@Table(name = "user")
+@Getter
+@Setter
+@Table(name = "schedule")
 public class Schedule {
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
     private Long idx;
     @Column
@@ -21,11 +28,14 @@ public class Schedule {
     private String type;
     @Column
     @NotNull
-    private Date date;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate date;
     @Column
     @NotNull
-    private Time starttime;
+    @JsonFormat(pattern = "HH:mm:ss")
+    private LocalTime start_time;
     @Column
     @NotNull
-    private Time stoptime;
+    @JsonFormat(pattern = "HH:mm:ss")
+    private LocalTime stop_time;
 }

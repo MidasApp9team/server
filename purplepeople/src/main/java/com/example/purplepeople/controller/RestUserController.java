@@ -16,7 +16,6 @@ import purple.common.controller.RestControllerStrategy;
 public class RestUserController extends CommonRestControllerPrototype {
     @Autowired
     private UserMapper userMapper;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -24,7 +23,6 @@ public class RestUserController extends CommonRestControllerPrototype {
     @ApiOperation("회원가입")
     public int Signup(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setEmpnum(null);
         return userMapper.register(user);
     }
     @PostMapping("/signin.do")
